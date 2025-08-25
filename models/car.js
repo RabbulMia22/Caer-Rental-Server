@@ -26,7 +26,7 @@ const carSchema = new mongoose.Schema({
     }
   },
   isRented: { type: Boolean, default: false },
-  renter: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // optional
+  renter: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 }, { timestamps: true });
 
 const Car = mongoose.model('Car', carSchema);

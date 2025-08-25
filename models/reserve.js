@@ -9,6 +9,12 @@ const reserveSchema = new mongoose.Schema({
   isPending: { type: Boolean, default: true },
   brand: { type: String, required: true },
   car: { type: mongoose.Schema.Types.ObjectId, ref: "Car", required: true },
+
+  // Snapshot of car location when reserved
+  reservedCarLocation: {
+    lat: { type: Number },
+    lng: { type: Number },
+  }
 });
 
 const Reserve = mongoose.model("Reserve", reserveSchema);

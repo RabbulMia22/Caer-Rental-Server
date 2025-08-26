@@ -72,5 +72,29 @@ const getUserRole = async (req, res) => {
   }
 };
 
+const getAdmin = async (req, res) => {
+  try {
+    const { email } = req.query;
 
-module.exports = { userInfo, getUserRole };
+    if (!email) {
+      return res.status(400).json({ message: "Email is required" });
+    }
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json(user); // ✅ return full user object
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+
+
+
+
+module.exports = { userInfo, getUserRole, getAdmin };
